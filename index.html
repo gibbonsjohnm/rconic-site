@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rconic — Game server admin app for Android</title>
+<meta name="description" content="Rconic is an Android app for running Source game servers from your phone: live status, an RCON console, map changes, kicks and bans, and alerts when your server goes down or players come and go.">
+<meta property="og:title" content="Rconic — Game server admin app for Android">
+<meta property="og:description" content="Run your Garry's Mod, Counter-Strike or Team Fortress 2 server from your phone.">
+<meta property="og:image" content="https://rconic.gibbons.tech/img/og.jpg">
+<meta property="og:url" content="https://rconic.gibbons.tech/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://rconic.gibbons.tech/">
+<meta name="theme-color" content="#0D1117">
+<link rel="icon" href="img/favicon.png">
+<style>
+  :root {
+    color-scheme: dark;
+    --base: #0D1117; --raised: #131922; --border: #222933;
+    --text: #E6EDF3; --dim: #8B949E; --accent: #39D353; --accent-tint: #0E2A17; --accent-fg: #4BE365;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--base); color: var(--text);
+    font: 18px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-fg); }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header { padding: 20px 0; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 700; font-size: 20px; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .get { color: var(--base); background: var(--accent); text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 18px; border-radius: 999px; }
+
+  /* Phone frame */
+  .phone {
+    position: relative; width: 330px; padding: 11px; border-radius: 50px;
+    background: #05070a; box-shadow: 0 0 0 2px #2b323c, 0 40px 90px rgba(0,0,0,.6);
+  }
+  .phone img { width: 100%; height: auto; aspect-ratio: 9 / 20; border-radius: 40px; background: #0D1117; }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center; padding: 48px 24px 96px; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--accent-fg); background: var(--accent-tint); padding: 6px 14px; border-radius: 999px; }
+  .pill svg { width: 16px; height: 16px; fill: currentColor; }
+  .hero h1 { font-size: clamp(40px, 6vw, 60px); line-height: 1.05; letter-spacing: -.03em; margin: 20px 0; }
+  .hero p { color: var(--dim); font-size: 20px; margin: 0 0 32px; max-width: 30rem; }
+  .badge img { height: 80px; margin: -12px; } /* the official badge carries its own padding */
+  .meta { color: var(--dim); font-size: 15px; margin-top: 14px; }
+  .hero-art { position: relative; padding-left: 40px; }
+  .notif {
+    position: absolute; top: 400px; left: -60px; width: 320px; z-index: 2;
+    display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 20px;
+    background: rgba(36, 43, 53, .94); backdrop-filter: blur(10px); box-shadow: 0 18px 40px rgba(0,0,0,.55);
+    font-size: 15px; line-height: 1.4;
+  }
+  .notif img { width: 34px; height: 34px; border-radius: 9px; flex: none; }
+  .notif small { color: var(--dim); }
+  .notif b { display: block; font-size: 15px; }
+
+  /* Feature rows */
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 72px 0; }
+  .feature .phone { justify-self: center; width: 300px; }
+  .feature:nth-of-type(even) .copy { order: 2; }
+  .feature h2 { font-size: 36px; line-height: 1.15; letter-spacing: -.02em; margin: 0 0 16px; }
+  .feature p { color: var(--dim); margin: 0 0 16px; }
+  .feature ul { margin: 0; padding: 0; list-style: none; }
+  .feature li { padding: 6px 0 6px 28px; position: relative; }
+  .feature li::before { content: ""; position: absolute; left: 4px; top: 17px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .pro { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .06em; color: var(--accent-fg); background: var(--accent-tint); padding: 4px 10px; border-radius: 6px; margin-bottom: 14px; }
+
+  /* Pricing band */
+  .band { background: var(--raised); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 72px 0; text-align: center; }
+  .band h2 { font-size: 36px; letter-spacing: -.02em; margin: 0 0 12px; }
+  .band p { color: var(--dim); margin: 0 auto 32px; max-width: 34rem; }
+  .band .badge { display: inline-block; }
+
+  /* Privacy + FAQ */
+  .section { padding: 80px 24px 0; }
+  .section h2 { font-size: 30px; letter-spacing: -.02em; margin: 0 0 32px; }
+  .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .points b { display: block; margin-bottom: 6px; }
+  .points p { color: var(--dim); margin: 0; font-size: 16px; }
+  details { border-top: 1px solid var(--border); padding: 18px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--border); }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--dim); font-weight: 400; }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--dim); margin: 10px 0 0; font-size: 16px; }
+
+  footer { margin-top: 80px; border-top: 1px solid var(--border); padding: 28px 0 40px; color: var(--dim); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--dim); margin-right: 20px; text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 820px) {
+    .hero, .feature { grid-template-columns: 1fr; gap: 40px; }
+    .hero { padding: 24px 24px 64px; }
+    .hero-art { justify-self: center; padding: 0; }
+    .phone, .feature .phone { width: min(300px, 80vw); border-radius: 46px; }
+    .phone img { border-radius: 36px; }
+    .notif { left: 50%; margin-left: -150px; width: 300px; top: 340px; }
+    .feature { padding: 48px 0; }
+    .feature:nth-of-type(even) .copy { order: 0; }
+    .feature h2 { font-size: 30px; }
+    .points { grid-template-columns: 1fr; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="img/icon-192.png" alt="">Rconic</a>
+    <a class="get" href="https://play.google.com/store/apps/details?id=com.rconic.app">Get the app</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <span class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.4 11.4 0 0 0-9.84 0L5.22 5.92a.38.38 0 0 0-.66.38L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>App for Android</span>
+      <h1>Run your game server from your phone.</h1>
+      <p>See who's playing, run RCON commands, and get a notification the moment your server goes down. For Garry's Mod, Counter-Strike, Team Fortress 2 and other Source games.</p>
+      <a class="badge" href="https://play.google.com/store/apps/details?id=com.rconic.app"><img src="img/google-play-badge.png" alt="Get it on Google Play"></a>
+      <div class="meta">Free · Android 7.0 or newer · No account needed</div>
+    </div>
+    <div class="hero-art">
+      <div class="notif" aria-hidden="true">
+        <img src="img/icon-192.png" alt="">
+        <div><small>Rconic · now</small><b>Sandbox EU</b>combine_99 disconnected</div>
+      </div>
+      <div class="phone"><img src="img/01-servers.webp" width="1080" height="2400" alt="Rconic's server list on a phone: three servers with their status, players, ping and map"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="feature">
+      <div class="copy">
+        <h2>A full RCON console in your pocket</h2>
+        <p>Do the admin work you'd normally need a PC for.</p>
+        <ul><li>Run any command and see the reply</li><li>One-tap quick commands like status and users</li><li>Broadcast a message to everyone on the server</li></ul>
+      </div>
+      <div class="phone"><img src="img/03-console.webp" width="1080" height="2400" alt="The RCON admin console showing a status command's output" loading="lazy"></div>
+    </section>
+
+    <section class="feature">
+      <div class="copy">
+        <h2>Change maps and manage players</h2>
+        <p>The everyday jobs, a couple of taps each, with a confirmation before anything runs.</p>
+        <ul><li>Search and switch to any map on the server</li><li>Kick or ban a player from the list</li><li>Review and lift bans</li></ul>
+      </div>
+      <div class="phone"><img src="img/04-maps.webp" width="1080" height="2400" alt="The map list for a server, with the current map marked" loading="lazy"></div>
+    </section>
+
+    <section class="feature">
+      <div class="copy">
+        <span class="pro">PRO</span>
+        <h2>Know before your players tell you</h2>
+        <p>Rconic keeps an eye on your servers in the background and notifies you when something changes.</p>
+        <ul><li>Alerts when a server goes down or comes back</li><li>Alerts when players join or leave</li><li>A 24-hour population chart for each server</li></ul>
+      </div>
+      <div class="phone"><img src="img/02-server.webp" width="1080" height="2400" alt="A server with Monitor alerts switched on and its population chart" loading="lazy"></div>
+    </section>
+
+    <section class="feature">
+      <div class="copy">
+        <span class="pro">PRO</span>
+        <h2>Remember every player</h2>
+        <p>A history of everyone who's played on your servers, kept on your phone.</p>
+        <ul><li>When they were last seen and how many sessions they've played</li><li>Your own tags, like Friend, Regular or Watch</li><li>Private notes on anyone</li></ul>
+      </div>
+      <div class="phone"><img src="img/05-people.webp" width="1080" height="2400" alt="Player history with tags" loading="lazy"></div>
+    </section>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <h2>Free to use. Pro when you want it.</h2>
+      <p>Everything for checking and running your servers is free. Rconic Pro is a one-time purchase, not a subscription, and you can try it free for 7 days.</p>
+      <a class="badge" href="https://play.google.com/store/apps/details?id=com.rconic.app"><img src="img/google-play-badge.png" alt="Get it on Google Play"></a>
+    </div>
+  </div>
+
+  <div class="wrap section">
+    <h2>Your data stays on your phone</h2>
+    <div class="points">
+      <div><b>No account, no ads</b><p>Install it and add a server. There's nothing to sign up for.</p></div>
+      <div><b>Passwords stay local</b><p>Your RCON passwords are stored on your phone and only sent to the server they belong to.</p></div>
+      <div><b>Only crash reports leave</b><p>Anonymous crash and performance reports, with sensitive values removed. <a href="https://gibbonsjohnm.github.io/rconic-privacy/">Privacy policy</a></p></div>
+    </div>
+  </div>
+
+  <div class="wrap section">
+    <h2>Questions</h2>
+    <details><summary>Does it work with my game?</summary><p>If your server answers Steam's server browser query and accepts Source RCON, it works. That includes Garry's Mod, Counter-Strike and Team Fortress 2. You can see a server's status without its password; the admin features need the RCON password.</p></details>
+    <details><summary>Is there an iPhone version?</summary><p>Not yet. Rconic is Android only for now.</p></details>
+    <details><summary>Is RCON safe over the internet?</summary><p>The RCON protocol itself isn't encrypted, whichever app or tool you use. Use a strong RCON password that you don't use anywhere else, and a VPN or trusted network when you can.</p></details>
+    <details><summary>Do alerts drain my battery?</summary><p>Monitoring only runs for the servers you turn it on for, checks at the interval you pick (30 seconds to 5 minutes), and stops when you turn it off.</p></details>
+    <details><summary>How do I get help?</summary><p>Email <a href="mailto:gibbonsjohnm@gmail.com">gibbonsjohnm@gmail.com</a>. Bug reports and ideas are welcome.</p></details>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><a href="https://gibbonsjohnm.github.io/rconic-privacy/">Privacy</a><a href="https://gibbonsjohnm.github.io/rconic-privacy/delete-data/">Delete your data</a><a href="mailto:gibbonsjohnm@gmail.com">Contact</a></div>
+    <div>© 2026 Rconic · Google Play is a trademark of Google LLC.</div>
+  </div>
+</footer>
+
+</body>
+</html>

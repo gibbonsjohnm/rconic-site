@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rconic.gibbons.tech/sitemap.xml
