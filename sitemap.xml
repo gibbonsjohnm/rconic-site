@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://rconic.gibbons.tech/</loc></url>
+  <url><loc>https://rconic.gibbons.tech/guides/</loc></url>
+  <url><loc>https://rconic.gibbons.tech/guides/gmod-rcon-from-your-phone/</loc></url>
+  <url><loc>https://rconic.gibbons.tech/guides/game-server-down-alerts/</loc></url>
 </urlset>

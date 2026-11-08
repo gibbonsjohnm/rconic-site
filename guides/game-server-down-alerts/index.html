@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get an alert on your phone when your game server goes down — Rconic</title>
+<meta name="description" content="Get a notification on your Android phone when your Garry&#x27;s Mod, Counter-Strike or TF2 server goes offline, comes back, or when players join and leave.">
+<meta property="og:title" content="Get an alert on your phone when your game server goes down">
+<meta property="og:description" content="Get a notification on your Android phone when your Garry&#x27;s Mod, Counter-Strike or TF2 server goes offline, comes back, or when players join and leave.">
+<meta property="og:image" content="https://rconic.gibbons.tech/img/og.jpg">
+<meta property="og:url" content="https://rconic.gibbons.tech/guides/game-server-down-alerts/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://rconic.gibbons.tech/guides/game-server-down-alerts/">
+<meta name="theme-color" content="#0D1117">
+<link rel="icon" href="/img/favicon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Get an alert on your phone when your game server goes down","description":"Get a notification on your Android phone when your Garry's Mod, Counter-Strike or TF2 server goes offline, comes back, or when players join and leave.","url":"https://rconic.gibbons.tech/guides/game-server-down-alerts/"}</script>
+<style>
+  :root { color-scheme: dark; --base: #0D1117; --raised: #131922; --border: #222933;
+    --text: #E6EDF3; --dim: #8B949E; --accent: #39D353; --accent-fg: #4BE365; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--base); color: var(--text);
+    font: 18px/1.7 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent-fg); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 20px 0; }
+  header .wrap { max-width: 1180px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 700; font-size: 20px; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  nav { display: flex; align-items: center; gap: 20px; }
+  nav a.plain { color: var(--dim); text-decoration: none; font-size: 15px; }
+  .get { color: var(--base); background: var(--accent); text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 18px; border-radius: 999px; }
+  main { padding: 40px 0 72px; }
+  .crumb { font-size: 15px; color: var(--dim); }
+  .crumb a { color: var(--dim); }
+  h1 { font-size: 40px; line-height: 1.15; letter-spacing: -.02em; margin: 12px 0 16px; }
+  .lede { color: var(--dim); font-size: 20px; margin: 0 0 32px; }
+  h2 { font-size: 26px; letter-spacing: -.01em; margin: 48px 0 12px; }
+  h3 { font-size: 20px; margin: 28px 0 8px; }
+  code { font: 15px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--raised);
+    border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+  pre { background: var(--raised); border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; }
+  pre code { border: 0; padding: 0; background: none; }
+  li { margin: 6px 0; }
+  .note { background: var(--raised); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+    border-radius: 10px; padding: 14px 18px; margin: 24px 0; }
+  .cta { margin: 56px 0 0; padding: 28px; background: var(--raised); border: 1px solid var(--border); border-radius: 16px; text-align: center; }
+  .cta p { margin: 0 0 18px; color: var(--dim); }
+  .cta img { display: inline-block; height: 56px; }
+  .cards { list-style: none; padding: 0; }
+  .cards li { background: var(--raised); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; margin: 0 0 16px; }
+  .cards a { font-weight: 600; font-size: 20px; text-decoration: none; }
+  .cards p { margin: 6px 0 0; color: var(--dim); }
+  footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--dim); font-size: 14px; }
+  footer .wrap { max-width: 1180px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--dim); margin-right: 18px; }
+  @media (max-width: 640px) { h1 { font-size: 32px; } nav a.plain { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/img/icon-192.png" alt="">Rconic</a>
+    <nav><a class="plain" href="/guides/">Guides</a><a class="get" href="https://play.google.com/store/apps/details?id=com.rconic.app&amp;referrer=utm_source%3Drconic_site%26utm_medium%3Dguide%26utm_campaign%3Dgame-server-down-alerts">Get the app</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+
+    <div class="crumb"><a href="/guides/">Guides</a></div>
+    <h1>Get an alert on your phone when your game server goes down</h1>
+    <p class="lede">Find out your server crashed before your players tell you. Rconic checks your Source game servers in the background and sends a notification when one goes offline, when it comes back, and when players join or leave.</p>
+
+    <h2>What you need</h2>
+    <ul>
+      <li>An Android phone with <a href="https://play.google.com/store/apps/details?id=com.rconic.app&amp;referrer=utm_source%3Drconic_site%26utm_medium%3Dguide%26utm_campaign%3Dgame-server-down-alerts">Rconic</a> installed.</li>
+      <li>A server for Garry's Mod, Counter-Strike, Team Fortress 2 or another game that answers Source server queries.</li>
+      <li><strong>No RCON password needed</strong> for online and offline alerts. Rconic uses the same public query the server browser uses.</li>
+      <li>Rconic Pro for monitoring. It's a one-time purchase, and you can try it free for 7 days.</li>
+    </ul>
+
+    <h2>1. Add your server</h2>
+    <p>Open Rconic, tap <strong>+</strong>, and enter a <strong>Nickname</strong>, the <strong>Host / IP</strong> and the <strong>Port</strong> (27015 unless your host says otherwise). The RCON password is optional for alerts. Tap <strong>Save</strong>.</p>
+
+    <h2>2. Turn on monitoring</h2>
+    <ol>
+      <li>Open the server from the list.</li>
+      <li>Turn on <strong>Monitor</strong> ("Alerts for players &amp; online status").</li>
+      <li>Allow notifications when Android asks.</li>
+    </ol>
+    <p>A small "Monitoring" notification stays visible while Rconic is checking your servers. Android requires it for apps that keep working in the background.</p>
+
+    <h2>3. Choose how often to check</h2>
+    <p>In <strong>Settings → Monitor poll interval</strong>, pick 30 seconds, 1 minute (the default) or 5 minutes. Shorter means faster alerts and a bit more battery.</p>
+    <p>To avoid false alarms from a single dropped packet, a server has to miss <strong>3 checks in a row</strong> before Rconic calls it offline. That's about 1½ minutes at 30 seconds, or about 3 minutes at the default.</p>
+
+    <h2>4. Stop Android from pausing alerts</h2>
+    <p>Some phones pause background apps to save power, which can delay or drop alerts. In Rconic, open <strong>Settings → Keep monitoring running</strong> and let Rconic run unrestricted.</p>
+
+    <h2>What the alerts look like</h2>
+    <ul>
+      <li><strong>"Server is offline"</strong>, when the server stops answering.</li>
+      <li><strong>"Server is online"</strong>, when it's back.</li>
+      <li><strong>Player activity</strong>, such as "Garry connected". When lots of players come and go at once, they're grouped into one notification, such as "6 players joined". Player alerts use a separate notification channel, so you can silence them in Android's settings and keep the outage alerts.</li>
+    </ul>
+
+    <div class="note">The checks run from your phone, so you only get alerts while your phone has an internet connection. It's a quick way to know something's wrong, not a replacement for monitoring on the server itself.</div>
+
+    <h2>Bonus: see who's been on</h2>
+    <p>Add your RCON password and turn on <strong>Background player tracking</strong> in Settings. Rconic then keeps a history of everyone who joins, with your own tags and private notes, and a 24-hour population chart for each server.</p>
+
+    <div class="cta">
+      <p>Rconic is free on Android. Pro is a one-time purchase with a 7-day free trial.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.rconic.app&amp;referrer=utm_source%3Drconic_site%26utm_medium%3Dguide%26utm_campaign%3Dgame-server-down-alerts"><img src="/img/google-play-badge.png" alt="Get it on Google Play"></a>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div><a href="/">Rconic</a><a href="/guides/">Guides</a><a href="https://gibbonsjohnm.github.io/rconic-privacy/">Privacy</a><a href="mailto:gibbonsjohnm@gmail.com">Contact</a></div>
+    <div>© 2026 Rconic · Google Play is a trademark of Google LLC.</div>
+  </div>
+</footer>
+</body>
+</html>

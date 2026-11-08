@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to use RCON on your Garry&#x27;s Mod server from your phone — Rconic</title>
+<meta name="description" content="Set up RCON on a Garry&#x27;s Mod server and run console commands, change maps, and kick or ban players from your Android phone.">
+<meta property="og:title" content="How to use RCON on your Garry&#x27;s Mod server from your phone">
+<meta property="og:description" content="Set up RCON on a Garry&#x27;s Mod server and run console commands, change maps, and kick or ban players from your Android phone.">
+<meta property="og:image" content="https://rconic.gibbons.tech/img/og.jpg">
+<meta property="og:url" content="https://rconic.gibbons.tech/guides/gmod-rcon-from-your-phone/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://rconic.gibbons.tech/guides/gmod-rcon-from-your-phone/">
+<meta name="theme-color" content="#0D1117">
+<link rel="icon" href="/img/favicon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to use RCON on your Garry's Mod server from your phone","description":"Set up RCON on a Garry's Mod server and run console commands, change maps, and kick or ban players from your Android phone.","url":"https://rconic.gibbons.tech/guides/gmod-rcon-from-your-phone/"}</script>
+<style>
+  :root { color-scheme: dark; --base: #0D1117; --raised: #131922; --border: #222933;
+    --text: #E6EDF3; --dim: #8B949E; --accent: #39D353; --accent-fg: #4BE365; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--base); color: var(--text);
+    font: 18px/1.7 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent-fg); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 20px 0; }
+  header .wrap { max-width: 1180px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 700; font-size: 20px; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  nav { display: flex; align-items: center; gap: 20px; }
+  nav a.plain { color: var(--dim); text-decoration: none; font-size: 15px; }
+  .get { color: var(--base); background: var(--accent); text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 18px; border-radius: 999px; }
+  main { padding: 40px 0 72px; }
+  .crumb { font-size: 15px; color: var(--dim); }
+  .crumb a { color: var(--dim); }
+  h1 { font-size: 40px; line-height: 1.15; letter-spacing: -.02em; margin: 12px 0 16px; }
+  .lede { color: var(--dim); font-size: 20px; margin: 0 0 32px; }
+  h2 { font-size: 26px; letter-spacing: -.01em; margin: 48px 0 12px; }
+  h3 { font-size: 20px; margin: 28px 0 8px; }
+  code { font: 15px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--raised);
+    border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+  pre { background: var(--raised); border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; }
+  pre code { border: 0; padding: 0; background: none; }
+  li { margin: 6px 0; }
+  .note { background: var(--raised); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+    border-radius: 10px; padding: 14px 18px; margin: 24px 0; }
+  .cta { margin: 56px 0 0; padding: 28px; background: var(--raised); border: 1px solid var(--border); border-radius: 16px; text-align: center; }
+  .cta p { margin: 0 0 18px; color: var(--dim); }
+  .cta img { display: inline-block; height: 56px; }
+  .cards { list-style: none; padding: 0; }
+  .cards li { background: var(--raised); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; margin: 0 0 16px; }
+  .cards a { font-weight: 600; font-size: 20px; text-decoration: none; }
+  .cards p { margin: 6px 0 0; color: var(--dim); }
+  footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--dim); font-size: 14px; }
+  footer .wrap { max-width: 1180px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--dim); margin-right: 18px; }
+  @media (max-width: 640px) { h1 { font-size: 32px; } nav a.plain { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/img/icon-192.png" alt="">Rconic</a>
+    <nav><a class="plain" href="/guides/">Guides</a><a class="get" href="https://play.google.com/store/apps/details?id=com.rconic.app&amp;referrer=utm_source%3Drconic_site%26utm_medium%3Dguide%26utm_campaign%3Dgmod-rcon-from-your-phone">Get the app</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+
+    <div class="crumb"><a href="/guides/">Guides</a></div>
+    <h1>How to use RCON on your Garry's Mod server from your phone</h1>
+    <p class="lede">RCON lets you run server console commands remotely. With an RCON password set, you can manage your Garry's Mod server from your phone: run commands, change the map, and kick or ban players without opening the game.</p>
+
+    <h2>1. Set an RCON password on the server</h2>
+    <p>Open <code>garrysmod/cfg/server.cfg</code> on your server and add a line with a long, random password:</p>
+    <pre><code>rcon_password "use-a-long-random-password-here"</code></pre>
+    <p>Restart the server or change the map so it takes effect. On a rented server, edit <code>server.cfg</code> from your host's control panel (it's usually under Config Files or File Manager).</p>
+    <div class="note">Treat the RCON password like an admin password: anyone who has it controls the server. RCON itself isn't encrypted, whichever tool you use, so make the password long and don't reuse it anywhere else.</div>
+
+    <h2>2. Find the address and port</h2>
+    <p>You need the server's IP address or hostname and its port. The default port is <strong>27015</strong>; your host's control panel shows the real one. RCON uses the same port number as the game, but over <strong>TCP</strong>, while players connect over UDP.</p>
+    <ul>
+      <li><strong>Rented servers:</strong> RCON over TCP is normally open already.</li>
+      <li><strong>Servers at home:</strong> forward the port for both TCP and UDP on your router, or RCON only works from your home Wi-Fi.</li>
+    </ul>
+
+    <h2>3. Add the server in Rconic</h2>
+    <ol>
+      <li>Install <a href="https://play.google.com/store/apps/details?id=com.rconic.app&amp;referrer=utm_source%3Drconic_site%26utm_medium%3Dguide%26utm_campaign%3Dgmod-rcon-from-your-phone">Rconic from Google Play</a> and open it.</li>
+      <li>Tap <strong>+</strong> to add a server.</li>
+      <li>Fill in <strong>Nickname</strong> (any name you like), <strong>Host / IP</strong>, <strong>Port</strong>, and <strong>RCON password</strong>.</li>
+      <li>If your server runs the ULX admin mod, turn on <strong>Server runs ULX</strong>. This enables ULX broadcasts and admin grants.</li>
+      <li>Tap <strong>Test connection</strong>, then <strong>Save</strong>.</li>
+    </ol>
+    <p>Open the server from the list. When the password is accepted, you'll see <strong>RCON ✓</strong> next to the server's status.</p>
+
+    <h2>4. Run commands and manage the server</h2>
+    <ul>
+      <li><strong>Console:</strong> type any command, such as <code>status</code>, and see the server's reply.</li>
+      <li><strong>Change map:</strong> pick from the server's map list, with a filter for long lists.</li>
+      <li><strong>Players:</strong> tap a player to kick, slay, ban for a set time or ban permanently. Every action asks for confirmation first.</li>
+      <li><strong>Bans:</strong> see SteamID bans and lift them. Unbanning runs <code>removeid</code> and <code>writeid</code>, so it survives a restart.</li>
+    </ul>
+
+    <h2>Troubleshooting</h2>
+    <h3>"RCON password rejected" or "RCON authentication failed"</h3>
+    <p>The password in Rconic doesn't match <code>rcon_password</code> on the server. Check for extra spaces or quotes, and make sure the server was restarted after you changed it. Edit the server in Rconic to update the saved password.</p>
+    <h3>"You are banned from this server's RCON"</h3>
+    <p>Source servers temporarily block an IP address after too many wrong passwords. Wait for the block to expire or restart the server, then fix the saved password before trying again. The <code>sv_rcon_banpenalty</code> and <code>sv_rcon_maxfailures</code> settings control how long and after how many attempts.</p>
+    <h3>"Couldn't reach RCON"</h3>
+    <p>The server didn't answer on TCP. It may be restarting; tap <strong>Retry</strong>. If it keeps happening, check that TCP is open on the server's port (see step 2).</p>
+    <h3>Status works but RCON doesn't, only on mobile data</h3>
+    <p>The server is probably at home and only the UDP port is forwarded. Forward TCP on the same port too.</p>
+
+    <div class="cta">
+      <p>Rconic is free on Android. Pro is a one-time purchase with a 7-day free trial.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.rconic.app&amp;referrer=utm_source%3Drconic_site%26utm_medium%3Dguide%26utm_campaign%3Dgmod-rcon-from-your-phone"><img src="/img/google-play-badge.png" alt="Get it on Google Play"></a>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div><a href="/">Rconic</a><a href="/guides/">Guides</a><a href="https://gibbonsjohnm.github.io/rconic-privacy/">Privacy</a><a href="mailto:gibbonsjohnm@gmail.com">Contact</a></div>
+    <div>© 2026 Rconic · Google Play is a trademark of Google LLC.</div>
+  </div>
+</footer>
+</body>
+</html>
