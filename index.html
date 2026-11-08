@@ -82,6 +82,8 @@
   /* Privacy + FAQ */
   .section { padding: 80px 24px 0; }
   .section h2 { font-size: 30px; letter-spacing: -.02em; margin: 0 0 32px; }
+  .video { position: relative; max-width: 860px; margin: 0 auto; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #000; }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
   .points b { display: block; margin-bottom: 6px; }
   .points p { color: var(--dim); margin: 0; font-size: 16px; }
@@ -117,7 +119,7 @@
 <header>
   <div class="wrap">
     <a class="brand" href="#"><img src="img/icon-192.png" alt="">Rconic</a>
-    <a class="get" href="https://play.google.com/store/apps/details?id=com.rconic.app">Get the app</a>
+    <a class="get" href="https://play.google.com/store/apps/details?id=com.rconic.app&amp;referrer=utm_source%3Drconic_site%26utm_medium%3Dweb">Get the app</a>
   </div>
 </header>
 
@@ -127,7 +129,7 @@
       <span class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.4 11.4 0 0 0-9.84 0L5.22 5.92a.38.38 0 0 0-.66.38L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>App for Android</span>
       <h1>Run your game server from your phone.</h1>
       <p>See who's playing, run RCON commands, and get a notification the moment your server goes down. For Garry's Mod, Counter-Strike, Team Fortress 2 and other Source games.</p>
-      <a class="badge" href="https://play.google.com/store/apps/details?id=com.rconic.app"><img src="img/google-play-badge.png" alt="Get it on Google Play"></a>
+      <a class="badge" href="https://play.google.com/store/apps/details?id=com.rconic.app&amp;referrer=utm_source%3Drconic_site%26utm_medium%3Dweb"><img src="img/google-play-badge.png" alt="Get it on Google Play"></a>
       <div class="meta">Free · Android 7.0 or newer · No account needed</div>
     </div>
     <div class="hero-art">
@@ -179,11 +181,16 @@
     </section>
   </div>
 
+  <div class="wrap section">
+    <h2>See it in 30 seconds</h2>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/T7uQohUgqkw?rel=0" title="Rconic promo video" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  </div>
+
   <div class="band">
     <div class="wrap">
       <h2>Free to use. Pro when you want it.</h2>
       <p>Everything for checking and running your servers is free. Rconic Pro is a one-time purchase, not a subscription, and you can try it free for 7 days.</p>
-      <a class="badge" href="https://play.google.com/store/apps/details?id=com.rconic.app"><img src="img/google-play-badge.png" alt="Get it on Google Play"></a>
+      <a class="badge" href="https://play.google.com/store/apps/details?id=com.rconic.app&amp;referrer=utm_source%3Drconic_site%26utm_medium%3Dweb"><img src="img/google-play-badge.png" alt="Get it on Google Play"></a>
     </div>
   </div>
 
